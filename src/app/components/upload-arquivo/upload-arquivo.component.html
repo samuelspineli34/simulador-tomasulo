@@ -1,0 +1,9 @@
+<div class="page">
+    <button mat-raised-button class="upload" (click)="fileInput.click()">
+        <mat-icon>upload</mat-icon>
+        <span>Upload Instruções</span>
+        <input type="file" #fileInput style="display: none;" (change)="uploadArquivo($event)">
+    </button>
+
+    <!-- <mat-table></mat-table> -->
+</div>

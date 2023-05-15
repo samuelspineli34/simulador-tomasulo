@@ -1,0 +1,20 @@
+.page {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 10px;
+    margin-top: 20px;
+    margin-left: 30px;
+}
+
+.upload {
+    width: 230px;
+    background-color: var(--primary);
+}
+
+.upload mat-icon {
+    color: #FFFFFF;
+}
+
+.upload span {
+    color: #FFFFFF;
+}

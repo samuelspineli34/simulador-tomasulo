@@ -15,6 +15,7 @@ import { MatBadgeModule } from '@angular/material/badge';
 import { MatDialogModule } from '@angular/material/dialog';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatTabsModule } from '@angular/material/tabs';
 
 @NgModule({
   exports: [
@@ -33,7 +34,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     MatCardModule,
     MatProgressSpinnerModule,
     MatSidenavModule,
-    MatDividerModule
+    MatDividerModule,
+    MatTabsModule
   ],
 })
 export class AppMaterialModule { }
