@@ -16,11 +16,13 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatTabsModule } from '@angular/material/tabs';
+import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
   exports: [
     BrowserModule,
     MatBadgeModule,
+    MatSelectModule,
     MatDialogModule,
     MatToolbarModule,
     BrowserAnimationsModule,

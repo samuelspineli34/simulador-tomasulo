@@ -18,3 +18,17 @@
 .upload span {
     color: #FFFFFF;
 }
+
+.linhaCadastro {
+    display: flex;
+    flex-direction: column;
+}
+
+.linhaCadastro span {
+    font-size: 15px;
+    font-weight: 500;
+}
+
+.linhaCadastro mat-form-field {
+    width: 150px;
+}

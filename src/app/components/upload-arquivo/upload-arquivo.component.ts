@@ -7,13 +7,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UploadArquivoComponent implements OnInit {
 
+  tiposInstrucoes: string[] = ['ADD', 'SUB', 'MULT', 'DIV', 'LW', 'SW', 'BEQ', 'BNE']
+  instrucaoSelecionada: string = ''
+
   constructor() { }
 
   ngOnInit(): void {
-  }
-
-  uploadArquivo(event: any) {
-
   }
 
 }
