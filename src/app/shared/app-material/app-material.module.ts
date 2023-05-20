@@ -17,12 +17,15 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatSelectModule } from '@angular/material/select';
+import { MatRadioModule } from '@angular/material/radio';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 
 @NgModule({
   exports: [
     BrowserModule,
     MatBadgeModule,
     MatSelectModule,
+    MatSlideToggleModule,
     MatDialogModule,
     MatToolbarModule,
     BrowserAnimationsModule,
@@ -36,6 +39,7 @@ import { MatSelectModule } from '@angular/material/select';
     MatCardModule,
     MatProgressSpinnerModule,
     MatSidenavModule,
+    MatRadioModule,
     MatDividerModule,
     MatTabsModule
   ],

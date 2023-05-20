@@ -1,15 +1,54 @@
 <div class="page">
-    <div fxLayout="row" fxLayoutGap="15px">
+  <div class="row">
 
-        <div class="linhaCadastro">
-            <span>Instrução MIPS</span>
-            <mat-form-field appearance="outline">
-                <mat-select (ngModel)="instrucaoSelecionada">
-                    <mat-option *ngFor="let instrucao of tiposInstrucoes" [value]="instrucao">{{instrucao}}</mat-option>
-                </mat-select>
-            </mat-form-field>
-        </div>
-
+    <div class="linhaCadastro">
+      <span>Instrução MIPS</span>
+      <mat-form-field appearance="outline">
+        <mat-select (ngModel)="instrucaoSelecionada">
+          <mat-option *ngFor="let instrucao of tiposInstrucoes" [value]="instrucao">{{instrucao}}</mat-option>
+        </mat-select>
+      </mat-form-field>
     </div>
-    <!-- <mat-table></mat-table> -->
+
+    <div class="linhaCadastro" *ngIf="instrucaoSelecionada.length > 0">
+      <span>Registrado 1</span>
+      <mat-form-field appearance="outline">
+        <mat-select (ngModel)="registrador1Selecionadol">
+          <mat-option *ngFor="let reg of opcaoRegistradores" [value]="reg">{{reg}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div class="linhaCadastro" *ngIf="instrucaoSelecionada.length > 0">
+      <span>Registrado 2</span>
+      <mat-form-field appearance="outline" *ngIf="!tipoRegistrador2">
+        <mat-select (ngModel)="registrador2Selecionadol">
+          <mat-option *ngFor="let reg of opcaoRegistradores" [value]="reg">{{reg}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field appearance="outline" *ngIf="tipoRegistrador2">
+        <input matInput type="text" (ngModel)="registrador2Selecionadol">
+      </mat-form-field>
+      <mat-slide-toggle ngModel (change)="tipoRegistrador2 = !tipoRegistrador2">Imediato</mat-slide-toggle>
+    </div>
+
+    <div class="linhaCadastro" *ngIf="instrucaoSelecionada.length > 0">
+      <span>Registrado 3</span>
+      <mat-form-field appearance="outline" *ngIf="!tipoRegistrador3">
+        <mat-select (ngModel)="registrador3Selecionadol">
+          <mat-option *ngFor="let reg of opcaoRegistradores" [value]="reg">{{reg}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field appearance="outline" *ngIf="tipoRegistrador3">
+        <input matInput type="text" (ngModel)="registrador3Selecionadol">
+      </mat-form-field>
+      <mat-slide-toggle ngModel (change)="tipoRegistrador3 = !tipoRegistrador3">Imediato</mat-slide-toggle>
+    </div>
+
+    <button mat-raised-button class="botaoAdicionarInstr" *ngIf="instrucaoSelecionada.length > 0">
+      <mat-icon>add</mat-icon>
+    </button>
+
+  </div>
+  <!-- <mat-table></mat-table> -->
 </div>

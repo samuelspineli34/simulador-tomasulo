@@ -1,34 +1,54 @@
 .page {
-    display: flex;
-    flex-direction: column;
-    padding-bottom: 10px;
-    margin-top: 20px;
-    margin-left: 30px;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 10px;
+  margin-top: 20px;
+  margin-left: 30px;
 }
 
 .upload {
-    width: 230px;
-    background-color: var(--primary);
+  width: 230px;
+  background-color: var(--primary);
 }
 
 .upload mat-icon {
-    color: #FFFFFF;
+  color: #FFFFFF;
 }
 
 .upload span {
-    color: #FFFFFF;
+  color: #FFFFFF;
 }
 
 .linhaCadastro {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
+  margin-left: 10px;
 }
 
 .linhaCadastro span {
-    font-size: 15px;
-    font-weight: 500;
+  font-size: 15px;
+  font-weight: 500;
 }
 
 .linhaCadastro mat-form-field {
-    width: 150px;
+  width: 150px;
+}
+
+mat-slide-toggle {
+  position: relative;
+  left: 10px;
+}
+
+.botaoAdicionarInstr {
+  position: relative;
+  top: 24px;
+  left: 10px;
+  height: 50px;
+  width: 50px;
+  background-color: var(--primary);
+  border-radius: 100%;
+}
+
+.botaoAdicionarInstr mat-icon {
+  color: #FFFFFF;
 }
