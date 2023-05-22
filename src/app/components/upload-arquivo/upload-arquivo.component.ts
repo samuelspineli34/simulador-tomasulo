@@ -26,4 +26,39 @@ export class UploadArquivoComponent implements OnInit {
     }
   }
 
+  validarDados() {
+    let msg = ''
+    if(!this.instrucaoSelecionada) {
+      msg += 'Instrução não selecionada'
+    }
+
+    if(!this.registrador1Selecionadol) {
+      if(msg.length > 0) {
+        msg += ', '
+      }
+      msg += 'registrador 1 não selecionado'
+    }
+
+    if(!this.registrador2Selecionadol) {
+      if(msg.length > 0) {
+        msg += ', '
+      }
+      msg += 'registrador 2 não selecionado'
+    }
+
+    if(!this.registrador3Selecionadol) {
+      if(msg.length > 0) {
+        msg += ', '
+      }
+      msg += 'registrador 3 não selecionado'
+    }
+
+    return msg.substring(0, 1).toUpperCase() + msg.substring(1)
+  }
+
+  criar() {
+    if(this.validarDados().length === 0) {
+
+    }
+  }
 }
