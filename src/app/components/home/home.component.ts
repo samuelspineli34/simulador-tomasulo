@@ -7,11 +7,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
+  registradores: string[] = ['$zero']
   instrucoesCriadas: any[] = []
 
   constructor() { }
 
   ngOnInit(): void {
+    for(let i = 0; i < 32; i++) {
+      this.registradores.push(`$s${i}`)
+    }
   }
 
   pegarInstrucoes(event: any) {

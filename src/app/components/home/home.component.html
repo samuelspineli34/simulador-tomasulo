@@ -1,6 +1,6 @@
 <mat-tab-group>
     <mat-tab label="Cadastrar MIPS">
-        <app-upload-arquivo (instrucoesCriadas)="pegarInstrucoes($event)"></app-upload-arquivo>
+        <app-upload-arquivo (instrucoesCriadas)="pegarInstrucoes($event)" [opcaoRegistradores]="registradores"></app-upload-arquivo>
     </mat-tab>
     <mat-tab label="Simular">
         

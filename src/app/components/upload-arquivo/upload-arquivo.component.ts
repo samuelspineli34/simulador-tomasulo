@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
@@ -7,9 +7,8 @@ import { MatTableDataSource } from '@angular/material/table';
   styleUrls: ['./upload-arquivo.component.css']
 })
 export class UploadArquivoComponent implements OnInit {
+  @Input() opcaoRegistradores: string[] = []
   @Output() instrucoesCriadas = new EventEmitter<any>();
-
-  opcaoRegistradores: string[] = ['$zero']
 
   tiposInstrucoes: string[] = ['ADD', 'SUB', 'MULT', 'DIV', 'LW', 'SW', 'BEQ', 'BNE']
   instrucaoSelecionada: string = ''
@@ -24,9 +23,6 @@ export class UploadArquivoComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    for(let i = 0; i < 32; i++) {
-      this.opcaoRegistradores.push(`$s${i}`)
-    }
   }
 
   validarDados() {
