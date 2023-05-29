@@ -64,7 +64,7 @@
 
     <ng-container matColumnDef="registrador2">
       <th mat-header-cell *matHeaderCellDef> Registrador 2 </th>
-      <td mat-cell *matCellDef="let element"> {{element.registrador2.reg}} </td>
+      <td mat-cell *matCellDef="let element"> {{element.registrador2.reg ? element.registrador2.reg : element.registrador2}} </td>
     </ng-container>
 
     <ng-container matColumnDef="registrador3">
