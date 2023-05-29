@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
   selector: 'app-upload-arquivo',
@@ -6,9 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./upload-arquivo.component.css']
 })
 export class UploadArquivoComponent implements OnInit {
-
-  tipoRegistrador2: boolean = false
-  tipoRegistrador3: boolean = false
+  @Output() instrucoesCriadas = new EventEmitter<any>();
 
   opcaoRegistradores: string[] = []
 
@@ -17,6 +16,10 @@ export class UploadArquivoComponent implements OnInit {
   registrador1Selecionadol: any
   registrador2Selecionadol: any
   registrador3Selecionadol: any
+
+  intrucaoMIPS: any[] = []
+  dataSource: MatTableDataSource<any> = new MatTableDataSource()
+  colunasTabela: string[] = ['id', 'instrucao', 'registrador1', 'registrador2', 'registrador3']
 
   constructor() { }
 
@@ -58,7 +61,15 @@ export class UploadArquivoComponent implements OnInit {
 
   criar() {
     if(this.validarDados().length === 0) {
-
+      this.intrucaoMIPS.push({
+        id: this.intrucaoMIPS.length === 0 ? 1 : this.intrucaoMIPS[this.intrucaoMIPS.length - 1].id + 1,
+        tipoInstrucao: this.instrucaoSelecionada,
+        registrador1: this.registrador1Selecionadol,
+        registrador2: this.registrador2Selecionadol,
+        registrador3: this.registrador3Selecionadol
+      })
+      this.dataSource = new MatTableDataSource(this.intrucaoMIPS)
+      this.instrucoesCriadas.emit(this.intrucaoMIPS)
     }
   }
 }
