@@ -8,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class HomeComponent implements OnInit {
 
   instrucoesCriadas: any[] = []
+  enviarInfo: boolean = false
 
   constructor() { }
 
@@ -16,5 +17,14 @@ export class HomeComponent implements OnInit {
 
   pegarInstrucoes(event: any) {
     this.instrucoesCriadas = event
+  }
+
+  passarInfor(event: any) {
+    console.log(this.instrucoesCriadas)
+    if(event === 1) {
+      this.enviarInfo = true
+    } else {
+      this.enviarInfo = false
+    }
   }
 }
