@@ -7,7 +7,7 @@ import { MatTableDataSource } from '@angular/material/table';
   styleUrls: ['./upload-arquivo.component.css']
 })
 export class UploadArquivoComponent implements OnInit {
-  @Input() opcaoRegistradores: string[] = []
+  @Input() opcaoRegistradores: any[] = []
   @Output() instrucoesCriadas = new EventEmitter<any>();
 
   tiposInstrucoes: string[] = ['ADD', 'SUB', 'MULT', 'DIV', 'LW', 'SW', 'BEQ', 'BNE']

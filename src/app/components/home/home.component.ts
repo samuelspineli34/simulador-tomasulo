@@ -7,14 +7,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  registradores: string[] = ['$zero']
+  registradores: any[] = [{
+    id: 0,
+    reg: '$zero',
+    status: ''
+  }]
   instrucoesCriadas: any[] = []
 
   constructor() { }
 
   ngOnInit(): void {
     for(let i = 0; i < 32; i++) {
-      this.registradores.push(`$s${i}`)
+      this.registradores.push({
+        id: this.registradores.length,
+        reg: `$s${i}`,
+        status: ''
+      })
     }
   }
 
