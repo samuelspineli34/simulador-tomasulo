@@ -51,11 +51,16 @@ export class UploadArquivoComponent implements OnInit {
       }
       msg += 'registrador 3 não selecionado'
     }
-
+    
     return msg.substring(0, 1).toUpperCase() + msg.substring(1)
   }
 
+  selecionarRegistrador2(event: any) {
+    this.registrador2Selecionadol = event.target.value
+  }
+
   criar() {
+    console.log(this.registrador2Selecionadol)
     if(this.validarDados().length === 0) {
       this.intrucaoMIPS.push({
         id: this.intrucaoMIPS.length === 0 ? 1 : this.intrucaoMIPS[this.intrucaoMIPS.length - 1].id + 1,
@@ -66,6 +71,8 @@ export class UploadArquivoComponent implements OnInit {
       })
       this.dataSource = new MatTableDataSource(this.intrucaoMIPS)
       this.instrucoesCriadas.emit(this.intrucaoMIPS)
+    } else {
+      console.log(this.validarDados().substring(0, 1).toUpperCase() + this.validarDados().substring(1))
     }
   }
 }
