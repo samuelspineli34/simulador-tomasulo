@@ -9,7 +9,7 @@ import { MatTableDataSource } from '@angular/material/table';
 export class UploadArquivoComponent implements OnInit {
   @Output() instrucoesCriadas = new EventEmitter<any>();
 
-  opcaoRegistradores: string[] = []
+  opcaoRegistradores: string[] = ['$zero']
 
   tiposInstrucoes: string[] = ['ADD', 'SUB', 'MULT', 'DIV', 'LW', 'SW', 'BEQ', 'BNE']
   instrucaoSelecionada: string = ''
