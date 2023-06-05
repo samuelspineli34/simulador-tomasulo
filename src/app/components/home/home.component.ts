@@ -15,9 +15,14 @@ export class HomeComponent implements OnInit {
     reg: '$zero',
     status: ''
   }]
-  instrucoesCriadas: any[] = []
+
   dataSource: MatTableDataSource<any> = new MatTableDataSource()
   colunasTabela: string[] = ['instrucao', 'registrador1', 'registrador2', 'registrador3']
+
+  instrucoesCriadas: any[] = []
+  dataSourceInstrucoes: MatTableDataSource<any> = new MatTableDataSource()
+  colunasTabelaInstrucoes: string[] = ['instrucao', 'registrador1', 'registrador2', 'registrador3']
+
 
   constructor() { }
 
@@ -33,7 +38,7 @@ export class HomeComponent implements OnInit {
 
   pegarInstrucoes(event: any) {
     this.instrucoesCriadas = event
-    this.dataSource = new MatTableDataSource(event)
-    this.dataSource.paginator = this.paginator
+    this.dataSourceInstrucoes = new MatTableDataSource(event)
+    this.dataSourceInstrucoes.paginator = this.paginator
   }
 }

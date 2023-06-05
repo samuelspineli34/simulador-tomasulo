@@ -4,10 +4,9 @@
     </mat-tab>
     <mat-tab label="Simular">
         <div class="column">
-          <div class="row">
-
+          <div class="row" style="justify-content: space-around;">
             <div class="column">
-              <table mat-table [dataSource]="dataSource" *ngIf="instrucoesCriadas.length > 0">
+              <table mat-table [dataSource]="dataSource">
                 <ng-container matColumnDef="instrucao">
                   <th mat-header-cell *matHeaderCellDef> Instrução </th>
                   <td mat-cell *matCellDef="let element"> {{element.tipoInstrucao}} </td>
@@ -31,8 +30,46 @@
                 <tr mat-header-row *matHeaderRowDef="colunasTabela"></tr>
                 <tr mat-row *matRowDef="let row; columns: colunasTabela;"></tr>
               </table>
+            </div>
+
+            <div class="column">
+              <table mat-table [dataSource]="dataSourceInstrucoes" *ngIf="instrucoesCriadas.length > 0">
+                <ng-container matColumnDef="instrucao">
+                  <th mat-header-cell *matHeaderCellDef> Instrução </th>
+                  <td mat-cell *matCellDef="let element"> {{element.tipoInstrucao}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="registrador1">
+                  <th mat-header-cell *matHeaderCellDef> Registrador 1 </th>
+                  <td mat-cell *matCellDef="let element"> {{element.registrador1.reg}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="registrador2">
+                  <th mat-header-cell *matHeaderCellDef> Registrador 2 </th>
+                  <td mat-cell *matCellDef="let element"> {{element.registrador2.reg ? element.registrador2.reg : element.registrador2}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="registrador3">
+                  <th mat-header-cell *matHeaderCellDef> Registrador 3 </th>
+                  <td mat-cell *matCellDef="let element"> {{element.registrador3.reg}} </td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="colunasTabelaInstrucoes"></tr>
+                <tr mat-row *matRowDef="let row; columns: colunasTabelaInstrucoes;"></tr>
+              </table>
               <mat-paginator #paginator *ngIf="instrucoesCriadas.length > 0" [pageSize]="5" [pageSizeOptions]="[5, 10]">
               </mat-paginator>
+            </div>
+          </div>
+
+          <div class="column" style="margin-top: 10px;">
+            <span style="margin-left: 40%; font-size: 20px; font-weight: 400;"> Status dos registradores </span>
+            <div style="display: flex; flex-wrap: wrap; flex-direction: row;">
+              <div *ngFor="let reg of registradores">
+                <div class="cardReg">
+                  <span>{{reg.reg}}</span>
+                </div>
+              </div>
             </div>
           </div>
         </div>
