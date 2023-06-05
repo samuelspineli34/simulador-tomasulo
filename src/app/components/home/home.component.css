@@ -23,3 +23,8 @@
   left: 1px;
   font-weight: 500;
 }
+
+.botaoAcao {
+  margin-top: 10px;
+  background-color: var(--primary);
+}

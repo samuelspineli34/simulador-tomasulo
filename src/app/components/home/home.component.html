@@ -60,6 +60,20 @@
               <mat-paginator #paginator *ngIf="instrucoesCriadas.length > 0" [pageSize]="5" [pageSizeOptions]="[5, 10]">
               </mat-paginator>
             </div>
+
+            <div class="column">
+              <button mat-fab class="botaoAcao">
+                <mat-icon>arrow_forward</mat-icon>
+              </button>
+    
+              <button mat-fab class="botaoAcao">
+                <mat-icon>skip_next</mat-icon>
+              </button>
+    
+              <button mat-fab class="botaoAcao">
+                <mat-icon>replay</mat-icon>
+              </button>
+            </div>
           </div>
 
           <div class="column" style="margin-top: 10px;">
