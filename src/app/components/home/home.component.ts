@@ -13,8 +13,8 @@ export class HomeComponent implements OnInit {
   registradores: any[] = [{
     id: 0,
     reg: '$zero',
-    status: null,
-    instrucao: null
+    status: 1,
+    instrucao: 'null'
   }]
 
   /*
@@ -126,7 +126,7 @@ export class HomeComponent implements OnInit {
   }
 
   resetarSimulador() {
-    this.registradores.forEach(reg => reg.status = null)
+    this.registradores.forEach(reg => {reg.status = null; reg.instrucao = null})
 
     this.instrucoesCriadas.forEach (ins => ins.executado = false)
     this.dataSourceInstrucoes = new MatTableDataSource(this.instrucoesCriadas)
