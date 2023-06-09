@@ -61,6 +61,14 @@
             <div class="column" *ngIf="instrucoesCriadas.length > 0">
               <span class="nomeTabela"> Instruções cadastradas </span>
               <mat-table [dataSource]="dataSourceInstrucoes">
+                <ng-container matColumnDef="executado">
+                  <mat-header-cell *matHeaderCellDef> Executado </mat-header-cell>
+                  <mat-cell *matCellDef="let element">
+                    <mat-icon *ngIf="element.executado" style="color: green;">done</mat-icon>
+                    <mat-icon *ngIf="!element.executado" style="color: red;">close</mat-icon>
+                  </mat-cell>
+                </ng-container>
+
                 <ng-container matColumnDef="instrucao">
                   <mat-header-cell *matHeaderCellDef> Instrução </mat-header-cell>
                   <mat-cell *matCellDef="let element"> {{element.tipoInstrucao}} </mat-cell>
