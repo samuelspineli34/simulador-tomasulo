@@ -18,8 +18,8 @@
 }
 
 .cardReg span {
-  position: relative; 
-  top: 7px; 
+  position: relative;
+  top: 7px;
   left: 1px;
   font-weight: 500;
 }
@@ -27,4 +27,21 @@
 .botaoAcao {
   margin-top: 10px;
   background-color: var(--primary);
+}
+
+.mat-column-instrucao {
+  flex: 0 0 80px !important;
+}
+
+.mat-column-ocupado {
+  flex: 0 0 60px !important;
+}
+
+.mat-column-op, .mat-column-vj, .mat-column-vk,
+.mat-column-qj, .mat-column-qk, .mat-column-a {
+  flex: 0 0 30px !important;
+}
+
+.mat-column-resultado {
+  flex: 0 0 80px !important;
 }

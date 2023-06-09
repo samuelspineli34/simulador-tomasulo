@@ -23,6 +23,9 @@ export class HomeComponent implements OnInit {
   dataSourceInstrucoes: MatTableDataSource<any> = new MatTableDataSource()
   colunasTabelaInstrucoes: string[] = ['instrucao', 'registrador1', 'registrador2', 'registrador3']
 
+  colunasTabelaReserva: string[] = ['instrucao', 'ocupado', 'op', 'vj', 'vk', 'qj', 'qk', 'a', 'resultado']
+  dataSourceReserva: MatTableDataSource<any> = new MatTableDataSource()
+  estacaoReserva: any[] = []
 
   constructor() { }
 
@@ -34,6 +37,71 @@ export class HomeComponent implements OnInit {
         status: ''
       })
     }
+
+    for(let i = 0; i < 2; i++) {
+      this.estacaoReserva.push(
+        {
+          instrucao: `LOAD${i}`,
+          ocupado: false,
+          op: null,
+          vj: null,
+          vk: null,
+          qj: null,
+          qk: null,
+          a: null,
+          resultado: null
+        }
+      )
+    }
+
+    for(let i = 0; i < 3; i++) {
+      this.estacaoReserva.push(
+        {
+          instrucao: `ADD${i}`,
+          ocupado: false,
+          op: null,
+          vj: null,
+          vk: null,
+          qj: null,
+          qk: null,
+          a: null,
+          resultado: null
+        }
+      )
+    }
+
+    for(let i = 0; i < 2; i++) {
+      this.estacaoReserva.push(
+        {
+          instrucao: `MULT${i}`,
+          ocupado: false,
+          op: null,
+          vj: null,
+          vk: null,
+          qj: null,
+          qk: null,
+          a: null,
+          resultado: null
+        }
+      )
+    }
+
+    for(let i = 0; i < 2; i++) {
+      this.estacaoReserva.push(
+        {
+          instrucao: `STORE${i}`,
+          ocupado: false,
+          op: null,
+          vj: null,
+          vk: null,
+          qj: null,
+          qk: null,
+          a: null,
+          resultado: null
+        }
+      )
+    }
+    this.dataSourceReserva = new MatTableDataSource(this.estacaoReserva)
   }
 
   pegarInstrucoes(event: any) {
