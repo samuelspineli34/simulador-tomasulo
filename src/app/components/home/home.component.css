@@ -38,8 +38,12 @@
 }
 
 .mat-column-op, .mat-column-vj, .mat-column-vk,
-.mat-column-qj, .mat-column-qk, .mat-column-a {
+.mat-column-qj, .mat-column-qk {
   flex: 0 0 50px !important;
+}
+
+.mat-column-a {
+  flex: 0 0 90px !important;
 }
 
 .mat-column-resultado {

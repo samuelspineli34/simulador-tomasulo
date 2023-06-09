@@ -56,7 +56,8 @@ export class HomeComponent implements OnInit {
           qj: null,
           qk: null,
           a: null,
-          resultado: null
+          resultado: null,
+          dataAlteracao: null
         }
       )
     }
@@ -72,7 +73,8 @@ export class HomeComponent implements OnInit {
           qj: null,
           qk: null,
           a: null,
-          resultado: null
+          resultado: null,
+          dataAlteracao: null
         }
       )
     }
@@ -88,7 +90,8 @@ export class HomeComponent implements OnInit {
           qj: null,
           qk: null,
           a: null,
-          resultado: null
+          resultado: null,
+          dataAlteracao: null
         }
       )
     }
@@ -104,7 +107,8 @@ export class HomeComponent implements OnInit {
           qj: null,
           qk: null,
           a: null,
-          resultado: null
+          resultado: null,
+          dataAlteracao: null
         }
       )
     }
@@ -120,45 +124,33 @@ export class HomeComponent implements OnInit {
   proximoPasso() {
     let instrucao = this.instrucoesCriadas.filter(iC => !iC.executado)[0]
     if(instrucao.tipoInstrucao.includes("SUB") || instrucao.tipoInstrucao.includes("ADD")) {
-      this.estacaoReserva[2].op = instrucao.tipoInstrucao
-      this.estacaoReserva[2].ocupado = true
-      this.estacaoReserva[2].vj = null
-      this.estacaoReserva[2].vk = instrucao.registrador3.reg
-      this.estacaoReserva[2].qj = null
-      this.estacaoReserva[2].qk = null
-      this.estacaoReserva[2].a = null
-      this.estacaoReserva[2].resultado = null
+      this.mudarInfoReserva(2, instrucao.tipoInstrucao, null, instrucao.registrador3.reg, null, null,
+        null, null)
     } else if(instrucao.tipoInstrucao.includes("MULT") || instrucao.tipoInstrucao.includes("DIV")) {
-      this.estacaoReserva[5].op = instrucao.tipoInstrucao
-      this.estacaoReserva[5].ocupado = true
-      this.estacaoReserva[5].vj = null
-      this.estacaoReserva[5].vk = instrucao.registrador3.reg
-      this.estacaoReserva[5].qj = null
-      this.estacaoReserva[5].qk = null
-      this.estacaoReserva[5].a = null
-      this.estacaoReserva[5].resultado = null
+      this.mudarInfoReserva(5, instrucao.tipoInstrucao, null, instrucao.registrador3.reg, null, null,
+        null, null)
     } else if(instrucao.tipoInstrucao.includes("LW")) {
-      this.estacaoReserva[0].op = instrucao.tipoInstrucao
-      this.estacaoReserva[0].ocupado = true
-      this.estacaoReserva[0].vj = null
-      this.estacaoReserva[0].vk = instrucao.registrador3.reg
-      this.estacaoReserva[0].qj = null
-      this.estacaoReserva[0].qk = null
-      this.estacaoReserva[0].a = null
-      this.estacaoReserva[0].resultado = null
+      this.mudarInfoReserva(0, instrucao.tipoInstrucao, null, instrucao.registrador3.reg, null, null,
+        null, null)
     } else if(instrucao.tipoInstrucao.includes("SW")) {
-      this.estacaoReserva[7].op = instrucao.tipoInstrucao
-      this.estacaoReserva[7].ocupado = true
-      this.estacaoReserva[7].vj = null
-      this.estacaoReserva[7].vk = instrucao.registrador3.reg
-      this.estacaoReserva[7].qj = null
-      this.estacaoReserva[7].qk = null
-      this.estacaoReserva[7].a = instrucao.registrador3.reg.concat(instrucao.registrador2)
-      this.estacaoReserva[7].resultado = null
+      this.mudarInfoReserva(7, instrucao.tipoInstrucao, null, instrucao.registrador3.reg, null, null,
+        instrucao.registrador3.reg.concat(` + ${instrucao.registrador2}`), null)
     } else if(instrucao.tipoInstrucao.includes("BEQ") || instrucao.tipoInstrucao.includes("BNE")) {
       /*???*/
     }
     instrucao.executado = true
+  }
+
+  mudarInfoReserva(index: number, tipoInstrucao: any, vj: any, vk: any, qj: any, qk: any, a: any, resultado: any) {
+    this.estacaoReserva[index].op = tipoInstrucao
+    this.estacaoReserva[index].ocupado = true
+    this.estacaoReserva[index].vj = vj
+    this.estacaoReserva[index].vk = vk
+    this.estacaoReserva[index].qj = qj
+    this.estacaoReserva[index].qk = qk
+    this.estacaoReserva[index].a = a
+    this.estacaoReserva[index].resultado = resultado
+    this.estacaoReserva[index].dataAlteracao = new Date()
   }
 
   executarTudo() {

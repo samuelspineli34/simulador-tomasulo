@@ -7,7 +7,7 @@
           <div class="row" style="justify-content: space-around;">
             <div class="column" style="margin-bottom: 20px;">
               <span class="nomeTabela">Estação de reserva</span>
-              <mat-table style="width: 540px;" [dataSource]="dataSourceReserva">
+              <mat-table style="width: 580px;" [dataSource]="dataSourceReserva">
                 <ng-container matColumnDef="instrucao">
                   <mat-header-cell *matHeaderCellDef> Instrução </mat-header-cell>
                   <mat-cell *matCellDef="let element"> {{element.instrucao}} </mat-cell>
@@ -64,8 +64,8 @@
                 <ng-container matColumnDef="executado">
                   <mat-header-cell *matHeaderCellDef> Executado </mat-header-cell>
                   <mat-cell *matCellDef="let element">
-                    <mat-icon *ngIf="element.executado" style="color: green;">done</mat-icon>
-                    <mat-icon *ngIf="!element.executado" style="color: red;">close</mat-icon>
+                    <mat-icon matTooltip="Executado" *ngIf="element.executado" style="color: green;">done</mat-icon>
+                    <mat-icon matTooltip="Não executado" *ngIf="!element.executado" style="color: red;">close</mat-icon>
                   </mat-cell>
                 </ng-container>
 
