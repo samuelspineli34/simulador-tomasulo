@@ -39,11 +39,11 @@
 
 .mat-column-op, .mat-column-vj, .mat-column-vk,
 .mat-column-qj, .mat-column-qk, .mat-column-a {
-  flex: 0 0 30px !important;
+  flex: 0 0 50px !important;
 }
 
 .mat-column-resultado {
-  flex: 0 0 80px !important;
+  flex: 0 0 100px !important;
 }
 
 .nomeTabela {
