@@ -139,6 +139,12 @@ export class HomeComponent implements OnInit {
       /*???*/
     }
     instrucao.executado = true
+    this.registradores.forEach(re => {
+      if(re.id === instrucao.registrador1.id) {
+        re.status = 1
+        re.instrucao = instrucao.tipoInstrucao // provisório
+      }
+    })
   }
 
   mudarInfoReserva(index: number, tipoInstrucao: any, vj: any, vk: any, qj: any, qk: any, a: any, resultado: any) {
