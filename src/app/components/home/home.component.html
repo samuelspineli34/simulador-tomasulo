@@ -6,6 +6,7 @@
         <div class="column">
           <div class="row" style="justify-content: space-around;">
             <div class="column" style="margin-bottom: 20px;">
+              <span class="nomeTabela">Estação de reserva</span>
               <mat-table style="width: 410px;" [dataSource]="dataSourceReserva">
                 <ng-container matColumnDef="instrucao">
                   <mat-header-cell *matHeaderCellDef> Instrução </mat-header-cell>
@@ -57,8 +58,9 @@
               </mat-table>
             </div>
 
-            <div class="column">
-              <mat-table [dataSource]="dataSourceInstrucoes" *ngIf="instrucoesCriadas.length > 0">
+            <div class="column" *ngIf="instrucoesCriadas.length > 0">
+              <span class="nomeTabela"> Instruções cadastradas </span>
+              <mat-table [dataSource]="dataSourceInstrucoes">
                 <ng-container matColumnDef="instrucao">
                   <mat-header-cell *matHeaderCellDef> Instrução </mat-header-cell>
                   <mat-cell *matCellDef="let element"> {{element.tipoInstrucao}} </mat-cell>
@@ -82,20 +84,26 @@
                 <mat-header-row *matHeaderRowDef="colunasTabelaInstrucoes"></mat-header-row>
                 <mat-row *matRowDef="let row; columns: colunasTabelaInstrucoes;"></mat-row>
               </mat-table>
-              <mat-paginator #paginator *ngIf="instrucoesCriadas.length > 0" [pageSize]="5" [pageSizeOptions]="[5, 10]">
+              <mat-paginator #paginator [pageSize]="5" [pageSizeOptions]="[5, 10]">
               </mat-paginator>
             </div>
 
-            <div class="column">
-              <button mat-fab class="botaoAcao">
+            <div class="column" *ngIf="instrucoesCriadas.length === 0">
+              <span class="aviso">
+                Por favor realize o cadastro das instruções MIPS antes de executar
+              </span>
+            </div>
+
+            <div class="column areaBotao">
+              <button mat-fab class="botaoAcao" [disabled]="instrucoesCriadas.length === 0">
                 <mat-icon>arrow_forward</mat-icon>
               </button>
 
-              <button mat-fab class="botaoAcao">
+              <button mat-fab class="botaoAcao" [disabled]="instrucoesCriadas.length === 0">
                 <mat-icon>skip_next</mat-icon>
               </button>
 
-              <button mat-fab class="botaoAcao">
+              <button mat-fab class="botaoAcao" [disabled]="instrucoesCriadas.length === 0">
                 <mat-icon>replay</mat-icon>
               </button>
             </div>
