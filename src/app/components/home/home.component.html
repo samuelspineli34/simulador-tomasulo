@@ -95,15 +95,15 @@
             </div>
 
             <div class="column areaBotao">
-              <button mat-fab class="botaoAcao" [disabled]="instrucoesCriadas.length === 0">
+              <button mat-fab class="botaoAcao" (click)="proximoPasso()" [disabled]="instrucoesCriadas.length === 0">
                 <mat-icon>arrow_forward</mat-icon>
               </button>
 
-              <button mat-fab class="botaoAcao" [disabled]="instrucoesCriadas.length === 0">
+              <button mat-fab class="botaoAcao" (click)="executarTudo()" [disabled]="instrucoesCriadas.length === 0">
                 <mat-icon>skip_next</mat-icon>
               </button>
 
-              <button mat-fab class="botaoAcao" [disabled]="instrucoesCriadas.length === 0">
+              <button mat-fab class="botaoAcao" (click)="resetarSimulador()" [disabled]="instrucoesCriadas.length === 0">
                 <mat-icon>replay</mat-icon>
               </button>
             </div>
@@ -113,8 +113,8 @@
             <span style="margin-left: 40%; font-size: 20px; font-weight: 400;"> Status dos registradores </span>
             <div style="display: flex; flex-wrap: wrap; flex-direction: row;">
               <div *ngFor="let reg of registradores">
-                <div class="cardReg">
-                  <span>{{reg.reg}}</span>
+                <div class="cardReg" [ngStyle]="reg.status === 1 ? {'background-color': '#1c61ca'} : {'background-color': 'white'}">
+                  <span [matTooltip]="reg.instrucao" [ngStyle]="reg.status === 1 ? {'color': 'white'} : {'color': 'black'}">{{reg.reg}}</span>
                 </div>
               </div>
             </div>

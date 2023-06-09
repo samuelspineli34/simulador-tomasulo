@@ -13,8 +13,14 @@ export class HomeComponent implements OnInit {
   registradores: any[] = [{
     id: 0,
     reg: '$zero',
-    status: ''
+    status: null,
+    instrucao: null
   }]
+
+  /*
+    status = null -> sem status
+    status = 1 -> ocupado + tooltip com a instrução ocupante
+  */
 
   dataSource: MatTableDataSource<any> = new MatTableDataSource()
   colunasTabela: string[] = ['instrucao', 'registrador1', 'registrador2', 'registrador3']
@@ -34,7 +40,8 @@ export class HomeComponent implements OnInit {
       this.registradores.push({
         id: this.registradores.length,
         reg: `$s${i}`,
-        status: ''
+        status: null,
+        instrucao: null
       })
     }
 
@@ -107,6 +114,22 @@ export class HomeComponent implements OnInit {
   pegarInstrucoes(event: any) {
     this.instrucoesCriadas = event
     this.dataSourceInstrucoes = new MatTableDataSource(event)
+    this.dataSourceInstrucoes.paginator = this.paginator
+  }
+
+  proximoPasso() {
+
+  }
+
+  executarTudo() {
+
+  }
+
+  resetarSimulador() {
+    this.registradores.forEach(reg => reg.status = null)
+
+    this.instrucoesCriadas.forEach (ins => ins.executado = false)
+    this.dataSourceInstrucoes = new MatTableDataSource(this.instrucoesCriadas)
     this.dataSourceInstrucoes.paginator = this.paginator
   }
 }
