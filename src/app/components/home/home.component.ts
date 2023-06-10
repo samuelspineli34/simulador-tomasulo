@@ -121,7 +121,8 @@ export class HomeComponent implements OnInit {
     this.dataSourceInstrucoes.paginator = this.paginator
   }
 
-  proximoPasso() {
+  async proximoPasso() {
+    await this.delay()
     let instrucao = this.instrucoesCriadas.filter(iC => !iC.executado)[0]
     if(instrucao.tipoInstrucao.includes("LW")) {
       if(this.estacaoReserva[0].ocupado && this.estacaoReserva[1].ocupado) {
@@ -212,6 +213,10 @@ export class HomeComponent implements OnInit {
         re.instrucao = instrucao.tipoInstrucao // provisório
       }
     })
+  }
+
+  delay(milis: number = 100) {
+    return new Promise( resolve => setTimeout(resolve, milis) );
   }
 
   mudarInfoReserva(index: number, tipoInstrucao: any, vj: any, vk: any, qj: any, qk: any, a: any, resultado: any) {
