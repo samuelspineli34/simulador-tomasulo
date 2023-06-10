@@ -123,18 +123,85 @@ export class HomeComponent implements OnInit {
 
   proximoPasso() {
     let instrucao = this.instrucoesCriadas.filter(iC => !iC.executado)[0]
-    if(instrucao.tipoInstrucao.includes("SUB") || instrucao.tipoInstrucao.includes("ADD")) {
-      this.mudarInfoReserva(2, instrucao.tipoInstrucao, null, instrucao.registrador3.reg, null, null,
-        null, null)
+    if(instrucao.tipoInstrucao.includes("LW")) {
+      if(this.estacaoReserva[0].ocupado && this.estacaoReserva[1].ocupado) {
+        if (this.estacaoReserva[0].dataAlteracao.getTime() < this.estacaoReserva[1].dataAlteracao.getTime()) {
+          this.mudarInfoReserva(0, instrucao.tipoInstrucao, null, instrucao.registrador3.reg, null, null,
+            null, null)
+        } else {
+          this.mudarInfoReserva(1, instrucao.tipoInstrucao, null, instrucao.registrador3.reg, null, null,
+            null, null)
+        }
+      } else {
+        if(!this.estacaoReserva[0].ocupado) {
+          this.mudarInfoReserva(0, instrucao.tipoInstrucao, null, instrucao.registrador3.reg, null, null,
+            null, null)
+        } else {
+          this.mudarInfoReserva(1, instrucao.tipoInstrucao, null, instrucao.registrador3.reg, null, null,
+            null, null)
+        }
+      }
+    } else if(instrucao.tipoInstrucao.includes("SUB") || instrucao.tipoInstrucao.includes("ADD")) {
+      if(this.estacaoReserva[2].ocupado && this.estacaoReserva[3].ocupado && this.estacaoReserva[4].ocupado) {
+        let indexMaisVelho = 2
+        if(this.estacaoReserva[indexMaisVelho].dataAlteracao.getTime() > this.estacaoReserva[3].dataAlteracao.getTime()) {
+          indexMaisVelho = 3
+        }
+        if(this.estacaoReserva[indexMaisVelho].dataAlteracao.getTime() > this.estacaoReserva[4].dataAlteracao.getTime()) {
+          indexMaisVelho = 4
+        }
+
+        this.mudarInfoReserva(indexMaisVelho, instrucao.tipoInstrucao, null, instrucao.registrador3.reg, null, null,
+          null, null)
+      } else {
+        if(!this.estacaoReserva[2].ocupado) {
+          this.mudarInfoReserva(2, instrucao.tipoInstrucao, null, instrucao.registrador3.reg, null, null,
+            null, null)
+        } else if(!this.estacaoReserva[3].ocupado) {
+          this.mudarInfoReserva(3, instrucao.tipoInstrucao, null, instrucao.registrador3.reg, null, null,
+            null, null)
+        } else {
+          this.mudarInfoReserva(4, instrucao.tipoInstrucao, null, instrucao.registrador3.reg, null, null,
+            null, null)
+        }
+      }
+
     } else if(instrucao.tipoInstrucao.includes("MULT") || instrucao.tipoInstrucao.includes("DIV")) {
-      this.mudarInfoReserva(5, instrucao.tipoInstrucao, null, instrucao.registrador3.reg, null, null,
-        null, null)
-    } else if(instrucao.tipoInstrucao.includes("LW")) {
-      this.mudarInfoReserva(0, instrucao.tipoInstrucao, null, instrucao.registrador3.reg, null, null,
-        null, null)
+      if(this.estacaoReserva[5].ocupado && this.estacaoReserva[6].ocupado) {
+        if (this.estacaoReserva[5].dataAlteracao.getTime() < this.estacaoReserva[6].dataAlteracao.getTime()) {
+          this.mudarInfoReserva(5, instrucao.tipoInstrucao, null, instrucao.registrador3.reg, null, null,
+            null, null)
+        } else {
+          this.mudarInfoReserva(6, instrucao.tipoInstrucao, null, instrucao.registrador3.reg, null, null,
+            null, null)
+        }
+      } else {
+        if(!this.estacaoReserva[5].ocupado) {
+          this.mudarInfoReserva(5, instrucao.tipoInstrucao, null, instrucao.registrador3.reg, null, null,
+            null, null)
+        } else {
+          this.mudarInfoReserva(6, instrucao.tipoInstrucao, null, instrucao.registrador3.reg, null, null,
+            null, null)
+        }
+      }
     } else if(instrucao.tipoInstrucao.includes("SW")) {
-      this.mudarInfoReserva(7, instrucao.tipoInstrucao, null, instrucao.registrador3.reg, null, null,
-        instrucao.registrador3.reg.concat(` + ${instrucao.registrador2}`), null)
+      if(this.estacaoReserva[7].ocupado && this.estacaoReserva[8].ocupado) {
+        if (this.estacaoReserva[7].dataAlteracao.getTime() < this.estacaoReserva[8].dataAlteracao.getTime()) {
+          this.mudarInfoReserva(7, instrucao.tipoInstrucao, null, instrucao.registrador3.reg, null, null,
+            instrucao.registrador3.reg.concat(` + ${instrucao.registrador2}`), null)
+        } else {
+          this.mudarInfoReserva(8, instrucao.tipoInstrucao, null, instrucao.registrador3.reg, null, null,
+            instrucao.registrador3.reg.concat(` + ${instrucao.registrador2}`), null)
+        }
+      } else {
+        if(!this.estacaoReserva[7].ocupado) {
+          this.mudarInfoReserva(7, instrucao.tipoInstrucao, null, instrucao.registrador3.reg, null, null,
+            instrucao.registrador3.reg.concat(` + ${instrucao.registrador2}`), null)
+        } else {
+          this.mudarInfoReserva(8, instrucao.tipoInstrucao, null, instrucao.registrador3.reg, null, null,
+            instrucao.registrador3.reg.concat(` + ${instrucao.registrador2}`), null)
+        }
+      }
     } else if(instrucao.tipoInstrucao.includes("BEQ") || instrucao.tipoInstrucao.includes("BNE")) {
       /*???*/
     }
