@@ -29,16 +29,24 @@
   background-color: var(--primary);
 }
 
+.mat-column-ope, .mat-column-estado {
+  flex: 0 0 130px !important;
+}
+
+.mat-column-valor {
+  flex: 0 0 100px !important;
+}
+
 .mat-column-instrucao {
   flex: 0 0 80px !important;
 }
 
-.mat-column-ocupado {
+.mat-column-ocupado, .mat-column-destino {
   flex: 0 0 60px !important;
 }
 
 .mat-column-op, .mat-column-vj, .mat-column-vk,
-.mat-column-qj, .mat-column-qk {
+.mat-column-qj, .mat-column-qk, .mat-column-entrada {
   flex: 0 0 50px !important;
 }
 

@@ -1,5 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatPaginator } from '@angular/material/paginator';
+import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
@@ -20,12 +19,9 @@ export class HomeComponent implements OnInit {
     status = 1 -> ocupado + tooltip com a instrução ocupante
   */
 
-  dataSource: MatTableDataSource<any> = new MatTableDataSource()
-  colunasTabela: string[] = ['instrucao', 'registrador1', 'registrador2', 'registrador3']
-
   instrucoesCriadas: any[] = []
   dataSourceInstrucoes: MatTableDataSource<any> = new MatTableDataSource()
-  colunasTabelaInstrucoes: string[] = ['entrada', 'ocupado', 'op', 'estado', 'destino', 'valor']
+  colunasTabelaInstrucoes: string[] = ['entrada', 'ocupado', 'ope', 'estado', 'destino', 'valor']
 
   colunasTabelaReserva: string[] = ['instrucao', 'ocupado', 'op', 'vj', 'vk', 'qj', 'qk', 'a', 'resultado']
   dataSourceReserva: MatTableDataSource<any> = new MatTableDataSource()
@@ -118,7 +114,6 @@ export class HomeComponent implements OnInit {
     let dados: any = []
 
     this.instrucoesCriadas.forEach(ins => {
-      console.log(ins)
       dados.push({
         entrada: dados.length !== 0 ? dados.length + 1 : 1,
         ocupado: false,
@@ -130,8 +125,6 @@ export class HomeComponent implements OnInit {
         value: null
       })
     })
-
-    console.log(dados)
 
     this.dataSourceInstrucoes = new MatTableDataSource(dados)
     this.resetarSimulador()

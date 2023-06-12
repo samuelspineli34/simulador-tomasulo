@@ -7,7 +7,7 @@
           <div class="row" style="justify-content: space-around;">
             <div class="column" *ngIf="instrucoesCriadas.length > 0">
               <span class="nomeTabela"> Buffer de ordenação </span>
-              <mat-table [dataSource]="dataSourceInstrucoes">
+              <mat-table [dataSource]="dataSourceInstrucoes" style="width: 500px;">
                 <ng-container matColumnDef="entrada">
                   <mat-header-cell *matHeaderCellDef> Entrada </mat-header-cell>
                   <mat-cell *matCellDef="let element"> {{element.entrada}} </mat-cell>
@@ -18,7 +18,7 @@
                   <mat-cell *matCellDef="let element"> {{element.ocupado ? 'Sim' : 'Não'}} </mat-cell>
                 </ng-container>
 
-                <ng-container matColumnDef="op">
+                <ng-container matColumnDef="ope">
                   <mat-header-cell *matHeaderCellDef> Operação </mat-header-cell>
                   <mat-cell *matCellDef="let element"> {{element.operacao}} </mat-cell>
                 </ng-container>
@@ -43,6 +43,12 @@
                 <mat-header-row *matHeaderRowDef="colunasTabelaInstrucoes"></mat-header-row>
                 <mat-row *matRowDef="let row; columns: colunasTabelaInstrucoes;"></mat-row>
               </mat-table>
+            </div>
+
+            <div class="column" *ngIf="instrucoesCriadas.length === 0">
+              <span class="aviso">
+                Por favor realize o cadastro das instruções MIPS antes de executar
+              </span>
             </div>
 
             <div class="column" style="margin-bottom: 20px;">
@@ -96,12 +102,6 @@
                 <mat-header-row *matHeaderRowDef="colunasTabelaReserva"></mat-header-row>
                 <mat-row *matRowDef="let row; columns: colunasTabelaReserva;"></mat-row>
               </mat-table>
-            </div>
-
-            <div class="column" *ngIf="instrucoesCriadas.length === 0">
-              <span class="aviso">
-                Por favor realize o cadastro das instruções MIPS antes de executar
-              </span>
             </div>
 
             <div class="column areaBotao">
