@@ -250,6 +250,7 @@ export class HomeComponent implements OnInit {
         destino: ins.registrador1.reg,
         value: null
       })
+      ins.executado = false
     })
 
     this.dataSourceInstrucoes = new MatTableDataSource(dados)

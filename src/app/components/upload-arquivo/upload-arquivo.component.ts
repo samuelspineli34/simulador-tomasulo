@@ -66,7 +66,8 @@ export class UploadArquivoComponent implements OnInit {
         tipoInstrucao: this.instrucaoSelecionada,
         registrador1: this.registrador1Selecionadol,
         registrador2: this.registrador2Selecionadol,
-        registrador3: this.registrador3Selecionadol
+        registrador3: this.registrador3Selecionadol,
+        executado: false
       })
       this.dataSource = new MatTableDataSource(this.intrucaoMIPS)
       this.instrucoesCriadas.emit(this.intrucaoMIPS)
