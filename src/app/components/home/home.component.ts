@@ -111,22 +111,6 @@ export class HomeComponent implements OnInit {
 
   pegarInstrucoes(event: any) {
     this.instrucoesCriadas = event
-    let dados: any = []
-
-    this.instrucoesCriadas.forEach(ins => {
-      dados.push({
-        entrada: dados.length !== 0 ? dados.length + 1 : 1,
-        ocupado: false,
-        operacao: ins.tipoInstrucao.includes('SW') || ins.tipoInstrucao.includes('LW') ? 
-        `${ins.tipoInstrucao} ${ins.registrador1.reg}, ${ins.registrador2} (${ins.registrador3.reg})` : 
-        `${ins.tipoInstrucao} ${ins.registrador1.reg}, ${ins.registrador2.reg}, ${ins.registrador3.reg}`,
-        estado: null,
-        destino: ins.registrador1.reg,
-        value: null
-      })
-    })
-
-    this.dataSourceInstrucoes = new MatTableDataSource(dados)
     this.resetarSimulador()
   }
 
