@@ -249,9 +249,23 @@ export class HomeComponent implements OnInit {
 
   resetarSimulador() {
     this.registradores.forEach(reg => {reg.status = null; reg.instrucao = null})
+    
+    let dados: any = []
 
-    this.instrucoesCriadas.forEach (ins => ins.executado = false)
-    this.pegarInstrucoes(this.instrucoesCriadas)
+    this.instrucoesCriadas.forEach(ins => {
+      dados.push({
+        entrada: dados.length !== 0 ? dados.length + 1 : 1,
+        ocupado: false,
+        operacao: ins.tipoInstrucao.includes('SW') || ins.tipoInstrucao.includes('LW') ? 
+        `${ins.tipoInstrucao} ${ins.registrador1.reg}, ${ins.registrador2} (${ins.registrador3.reg})` : 
+        `${ins.tipoInstrucao} ${ins.registrador1.reg}, ${ins.registrador2.reg}, ${ins.registrador3.reg}`,
+        estado: null,
+        destino: ins.registrador1.reg,
+        value: null
+      })
+    })
+
+    this.dataSourceInstrucoes = new MatTableDataSource(dados)
 
     this.estacaoReserva.forEach(er => {
       er.ocupado = false
@@ -263,6 +277,7 @@ export class HomeComponent implements OnInit {
       er.a = null
       er.resultado = null
     })
-    this.dataSourceReserva = new MatTableDataSource(this.estacaoReserva)
+    console.log(this.estacaoReserva)
+    //this.dataSourceReserva = new MatTableDataSource(this.estacaoReserva)
   }
 }
