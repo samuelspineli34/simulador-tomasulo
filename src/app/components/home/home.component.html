@@ -5,6 +5,46 @@
     <mat-tab label="Simular">
         <div class="column">
           <div class="row" style="justify-content: space-around;">
+            <div class="column" *ngIf="instrucoesCriadas.length > 0">
+              <span class="nomeTabela"> Buffer de ordenação </span>
+              <mat-table [dataSource]="dataSourceInstrucoes">
+                <ng-container matColumnDef="entrada">
+                  <mat-header-cell *matHeaderCellDef> Entrada </mat-header-cell>
+                  <mat-cell *matCellDef="let element"> {{element.entrada}} </mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="ocupado">
+                  <mat-header-cell *matHeaderCellDef> Ocupado </mat-header-cell>
+                  <mat-cell *matCellDef="let element"> {{element.ocupado ? 'Sim' : 'Não'}} </mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="op">
+                  <mat-header-cell *matHeaderCellDef> Operação </mat-header-cell>
+                  <mat-cell *matCellDef="let element"> {{element.operacao}} </mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="estado">
+                  <mat-header-cell *matHeaderCellDef> Estado </mat-header-cell>
+                  <mat-cell *matCellDef="let element"> {{element.estado}} </mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="destino">
+                  <mat-header-cell *matHeaderCellDef> Destino </mat-header-cell>
+                  <mat-cell *matCellDef="let element"> {{element.destino}} </mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="valor">
+                  <mat-header-cell *matHeaderCellDef> Valor </mat-header-cell>
+                  <mat-cell *matCellDef="let element">
+                    {{element.valor}}
+                  </mat-cell>
+                </ng-container>
+
+                <mat-header-row *matHeaderRowDef="colunasTabelaInstrucoes"></mat-header-row>
+                <mat-row *matRowDef="let row; columns: colunasTabelaInstrucoes;"></mat-row>
+              </mat-table>
+            </div>
+
             <div class="column" style="margin-bottom: 20px;">
               <span class="nomeTabela">Estação de reserva</span>
               <mat-table style="width: 580px;" [dataSource]="dataSourceReserva">
@@ -56,44 +96,6 @@
                 <mat-header-row *matHeaderRowDef="colunasTabelaReserva"></mat-header-row>
                 <mat-row *matRowDef="let row; columns: colunasTabelaReserva;"></mat-row>
               </mat-table>
-            </div>
-
-            <div class="column" *ngIf="instrucoesCriadas.length > 0">
-              <span class="nomeTabela"> Instruções cadastradas </span>
-              <mat-table [dataSource]="dataSourceInstrucoes">
-                <ng-container matColumnDef="executado">
-                  <mat-header-cell *matHeaderCellDef> Executado </mat-header-cell>
-                  <mat-cell *matCellDef="let element">
-                    <mat-icon matTooltip="Executado" *ngIf="element.executado" style="color: green;">done</mat-icon>
-                    <mat-icon matTooltip="Não executado" *ngIf="!element.executado" style="color: red;">close</mat-icon>
-                  </mat-cell>
-                </ng-container>
-
-                <ng-container matColumnDef="instrucao">
-                  <mat-header-cell *matHeaderCellDef> Instrução </mat-header-cell>
-                  <mat-cell *matCellDef="let element"> {{element.tipoInstrucao}} </mat-cell>
-                </ng-container>
-
-                <ng-container matColumnDef="registrador1">
-                  <mat-header-cell *matHeaderCellDef> Registrador 1 </mat-header-cell>
-                  <mat-cell *matCellDef="let element"> {{element.registrador1.reg}} </mat-cell>
-                </ng-container>
-
-                <ng-container matColumnDef="registrador2">
-                  <mat-header-cell *matHeaderCellDef> Registrador 2 </mat-header-cell>
-                  <mat-cell *matCellDef="let element"> {{element.registrador2.reg ? element.registrador2.reg : element.registrador2}} </mat-cell>
-                </ng-container>
-
-                <ng-container matColumnDef="registrador3">
-                  <mat-header-cell *matHeaderCellDef> Registrador 3 </mat-header-cell>
-                  <mat-cell *matCellDef="let element"> {{element.registrador3.reg}} </mat-cell>
-                </ng-container>
-
-                <mat-header-row *matHeaderRowDef="colunasTabelaInstrucoes"></mat-header-row>
-                <mat-row *matRowDef="let row; columns: colunasTabelaInstrucoes;"></mat-row>
-              </mat-table>
-              <mat-paginator #paginator [pageSize]="5" [pageSizeOptions]="[5, 10]">
-              </mat-paginator>
             </div>
 
             <div class="column" *ngIf="instrucoesCriadas.length === 0">

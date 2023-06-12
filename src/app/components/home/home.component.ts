@@ -8,8 +8,6 @@ import { MatTableDataSource } from '@angular/material/table';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  @ViewChild(MatPaginator) paginator!: MatPaginator;
-
   registradores: any[] = [{
     id: 0,
     reg: '$zero',
@@ -27,7 +25,7 @@ export class HomeComponent implements OnInit {
 
   instrucoesCriadas: any[] = []
   dataSourceInstrucoes: MatTableDataSource<any> = new MatTableDataSource()
-  colunasTabelaInstrucoes: string[] = ['executado', 'instrucao', 'registrador1', 'registrador2', 'registrador3']
+  colunasTabelaInstrucoes: string[] = ['entrada', 'ocupado', 'op', 'estado', 'destino', 'valor']
 
   colunasTabelaReserva: string[] = ['instrucao', 'ocupado', 'op', 'vj', 'vk', 'qj', 'qk', 'a', 'resultado']
   dataSourceReserva: MatTableDataSource<any> = new MatTableDataSource()
@@ -117,8 +115,26 @@ export class HomeComponent implements OnInit {
 
   pegarInstrucoes(event: any) {
     this.instrucoesCriadas = event
-    this.dataSourceInstrucoes = new MatTableDataSource(event)
-    this.dataSourceInstrucoes.paginator = this.paginator
+    let dados: any = []
+
+    this.instrucoesCriadas.forEach(ins => {
+      console.log(ins)
+      dados.push({
+        entrada: dados.length !== 0 ? dados.length + 1 : 1,
+        ocupado: false,
+        operacao: ins.tipoInstrucao.includes('SW') || ins.tipoInstrucao.includes('LW') ? 
+        `${ins.tipoInstrucao} ${ins.registrador1.reg}, ${ins.registrador2} (${ins.registrador3.reg})` : 
+        `${ins.tipoInstrucao} ${ins.registrador1.reg}, ${ins.registrador2.reg}, ${ins.registrador3.reg}`,
+        estado: null,
+        destino: ins.registrador1.reg,
+        value: null
+      })
+    })
+
+    console.log(dados)
+
+    this.dataSourceInstrucoes = new MatTableDataSource(dados)
+    this.resetarSimulador()
   }
 
   async proximoPasso() {
@@ -128,18 +144,18 @@ export class HomeComponent implements OnInit {
       if(this.estacaoReserva[0].ocupado && this.estacaoReserva[1].ocupado) {
         if (this.estacaoReserva[0].dataAlteracao.getTime() < this.estacaoReserva[1].dataAlteracao.getTime()) {
           this.mudarInfoReserva(0, instrucao.tipoInstrucao, null, instrucao.registrador3.reg, null, null,
-            null, null)
+            instrucao.registrador3.reg.concat(` + ${instrucao.registrador2}`), null, instrucao.registrador1)
         } else {
           this.mudarInfoReserva(1, instrucao.tipoInstrucao, null, instrucao.registrador3.reg, null, null,
-            null, null)
+            instrucao.registrador3.reg.concat(` + ${instrucao.registrador2}`), null, instrucao.registrador1)
         }
       } else {
         if(!this.estacaoReserva[0].ocupado) {
           this.mudarInfoReserva(0, instrucao.tipoInstrucao, null, instrucao.registrador3.reg, null, null,
-            null, null)
+            instrucao.registrador3.reg.concat(` + ${instrucao.registrador2}`), null, instrucao.registrador1)
         } else {
           this.mudarInfoReserva(1, instrucao.tipoInstrucao, null, instrucao.registrador3.reg, null, null,
-            null, null)
+            instrucao.registrador3.reg.concat(` + ${instrucao.registrador2}`), null, instrucao.registrador1)
         }
       }
     } else if(instrucao.tipoInstrucao.includes("SUB") || instrucao.tipoInstrucao.includes("ADD")) {
@@ -153,17 +169,17 @@ export class HomeComponent implements OnInit {
         }
 
         this.mudarInfoReserva(indexMaisVelho, instrucao.tipoInstrucao, null, instrucao.registrador3.reg, null, null,
-          null, null)
+          null, null, instrucao.registrador1)
       } else {
         if(!this.estacaoReserva[2].ocupado) {
           this.mudarInfoReserva(2, instrucao.tipoInstrucao, null, instrucao.registrador3.reg, null, null,
-            null, null)
+            null, null, instrucao.registrador1)
         } else if(!this.estacaoReserva[3].ocupado) {
           this.mudarInfoReserva(3, instrucao.tipoInstrucao, null, instrucao.registrador3.reg, null, null,
-            null, null)
+            null, null, instrucao.registrador1)
         } else {
           this.mudarInfoReserva(4, instrucao.tipoInstrucao, null, instrucao.registrador3.reg, null, null,
-            null, null)
+            null, null, instrucao.registrador1)
         }
       }
 
@@ -171,55 +187,49 @@ export class HomeComponent implements OnInit {
       if(this.estacaoReserva[5].ocupado && this.estacaoReserva[6].ocupado) {
         if (this.estacaoReserva[5].dataAlteracao.getTime() < this.estacaoReserva[6].dataAlteracao.getTime()) {
           this.mudarInfoReserva(5, instrucao.tipoInstrucao, null, instrucao.registrador3.reg, null, null,
-            null, null)
+            null, null, instrucao.registrador1)
         } else {
           this.mudarInfoReserva(6, instrucao.tipoInstrucao, null, instrucao.registrador3.reg, null, null,
-            null, null)
+            null, null, instrucao.registrador1)
         }
       } else {
         if(!this.estacaoReserva[5].ocupado) {
           this.mudarInfoReserva(5, instrucao.tipoInstrucao, null, instrucao.registrador3.reg, null, null,
-            null, null)
+            null, null, instrucao.registrador1)
         } else {
           this.mudarInfoReserva(6, instrucao.tipoInstrucao, null, instrucao.registrador3.reg, null, null,
-            null, null)
+            null, null, instrucao.registrador1)
         }
       }
     } else if(instrucao.tipoInstrucao.includes("SW")) {
       if(this.estacaoReserva[7].ocupado && this.estacaoReserva[8].ocupado) {
         if (this.estacaoReserva[7].dataAlteracao.getTime() < this.estacaoReserva[8].dataAlteracao.getTime()) {
           this.mudarInfoReserva(7, instrucao.tipoInstrucao, null, instrucao.registrador3.reg, null, null,
-            instrucao.registrador3.reg.concat(` + ${instrucao.registrador2}`), null)
+            instrucao.registrador3.reg.concat(` + ${instrucao.registrador2}`), null, instrucao.registrador1)
         } else {
           this.mudarInfoReserva(8, instrucao.tipoInstrucao, null, instrucao.registrador3.reg, null, null,
-            instrucao.registrador3.reg.concat(` + ${instrucao.registrador2}`), null)
+            instrucao.registrador3.reg.concat(` + ${instrucao.registrador2}`), null, instrucao.registrador1)
         }
       } else {
         if(!this.estacaoReserva[7].ocupado) {
           this.mudarInfoReserva(7, instrucao.tipoInstrucao, null, instrucao.registrador3.reg, null, null,
-            instrucao.registrador3.reg.concat(` + ${instrucao.registrador2}`), null)
+            instrucao.registrador3.reg.concat(` + ${instrucao.registrador2}`), null, instrucao.registrador1)
         } else {
           this.mudarInfoReserva(8, instrucao.tipoInstrucao, null, instrucao.registrador3.reg, null, null,
-            instrucao.registrador3.reg.concat(` + ${instrucao.registrador2}`), null)
+            instrucao.registrador3.reg.concat(` + ${instrucao.registrador2}`), null, instrucao.registrador1)
         }
       }
     } else if(instrucao.tipoInstrucao.includes("BEQ") || instrucao.tipoInstrucao.includes("BNE")) {
       /*???*/
     }
     instrucao.executado = true
-    this.registradores.forEach(re => {
-      if(re.id === instrucao.registrador1.id) {
-        re.status = 1
-        re.instrucao = instrucao.tipoInstrucao // provisório
-      }
-    })
   }
 
   delay(milis: number = 100) {
     return new Promise( resolve => setTimeout(resolve, milis) );
   }
 
-  mudarInfoReserva(index: number, tipoInstrucao: any, vj: any, vk: any, qj: any, qk: any, a: any, resultado: any) {
+  mudarInfoReserva(index: number, tipoInstrucao: any, vj: any, vk: any, qj: any, qk: any, a: any, resultado: any, registrador1: any) {
     this.estacaoReserva[index].op = tipoInstrucao
     this.estacaoReserva[index].ocupado = true
     this.estacaoReserva[index].vj = vj
@@ -229,6 +239,13 @@ export class HomeComponent implements OnInit {
     this.estacaoReserva[index].a = a
     this.estacaoReserva[index].resultado = resultado
     this.estacaoReserva[index].dataAlteracao = new Date()
+    
+    this.registradores.forEach(re => {
+      if(re.id === registrador1.id) {
+        re.status = 1
+        re.instrucao = this.estacaoReserva[index].instrucao
+      }
+    })
   }
 
   executarTudo() {
@@ -241,8 +258,7 @@ export class HomeComponent implements OnInit {
     this.registradores.forEach(reg => {reg.status = null; reg.instrucao = null})
 
     this.instrucoesCriadas.forEach (ins => ins.executado = false)
-    this.dataSourceInstrucoes = new MatTableDataSource(this.instrucoesCriadas)
-    this.dataSourceInstrucoes.paginator = this.paginator
+    this.pegarInstrucoes(this.instrucoesCriadas)
 
     this.estacaoReserva.forEach(er => {
       er.ocupado = false
