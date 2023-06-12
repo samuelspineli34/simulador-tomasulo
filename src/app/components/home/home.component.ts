@@ -249,7 +249,7 @@ export class HomeComponent implements OnInit {
 
   resetarSimulador() {
     this.registradores.forEach(reg => {reg.status = null; reg.instrucao = null})
-    
+
     let dados: any = []
 
     this.instrucoesCriadas.forEach(ins => {
@@ -277,7 +277,5 @@ export class HomeComponent implements OnInit {
       er.a = null
       er.resultado = null
     })
-    console.log(this.estacaoReserva)
-    //this.dataSourceReserva = new MatTableDataSource(this.estacaoReserva)
   }
 }
