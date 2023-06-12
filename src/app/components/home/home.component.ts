@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
@@ -7,6 +8,8 @@ import { MatTableDataSource } from '@angular/material/table';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+
   registradores: any[] = [{
     id: 0,
     reg: '$zero',
@@ -250,6 +253,7 @@ export class HomeComponent implements OnInit {
     })
 
     this.dataSourceInstrucoes = new MatTableDataSource(dados)
+    this.dataSourceInstrucoes.paginator = this.paginator
 
     this.estacaoReserva.forEach(er => {
       er.ocupado = false
