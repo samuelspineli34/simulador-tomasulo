@@ -3,7 +3,7 @@
         <app-upload-arquivo (instrucoesCriadas)="pegarInstrucoes($event)" [opcaoRegistradores]="registradores"></app-upload-arquivo>
     </mat-tab>
     <mat-tab label="Simular">
-      <div class="row" style="justify-content: space-around; width: 1400px;">
+      <div class="row" style="justify-content: space-around; width: 1400px; overflow: hidden;">
         <div class="column">
           <div class="column" *ngIf="instrucoesCriadas.length > 0">
             <span class="nomeTabela"> Buffer de ordenação </span>
