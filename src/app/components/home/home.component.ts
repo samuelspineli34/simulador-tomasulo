@@ -120,6 +120,7 @@ export class HomeComponent implements OnInit {
   async proximoPasso() {
     await this.delay()
     let instrucao = this.instrucoesCriadas.filter(iC => !iC.executado)[0]
+
     if(instrucao.tipoInstrucao.includes("LW")) {
       if(this.estacaoReserva[0].ocupado && this.estacaoReserva[1].ocupado) {
         if (this.estacaoReserva[0].dataAlteracao.getTime() < this.estacaoReserva[1].dataAlteracao.getTime()) {
@@ -203,6 +204,7 @@ export class HomeComponent implements OnInit {
       /*???*/
     }
     instrucao.executado = true
+    this.dataSourceInstrucoes.data.filter(ins => ins.estado.includes('Issue'))[0].estado = 'Executado'
   }
 
   delay(milis: number = 100) {
@@ -219,7 +221,7 @@ export class HomeComponent implements OnInit {
     this.estacaoReserva[index].a = a
     this.estacaoReserva[index].resultado = resultado
     this.estacaoReserva[index].dataAlteracao = new Date()
-    
+
     this.registradores.forEach(re => {
       if(re.id === registrador1.id) {
         re.status = 1
@@ -238,19 +240,27 @@ export class HomeComponent implements OnInit {
     this.registradores.forEach(reg => {reg.status = null; reg.instrucao = null})
 
     let dados: any = []
+    let cont = 0
 
     this.instrucoesCriadas.forEach(ins => {
-      dados.push({
+      let inst = {
         entrada: dados.length !== 0 ? dados.length + 1 : 1,
         ocupado: false,
-        operacao: ins.tipoInstrucao.includes('SW') || ins.tipoInstrucao.includes('LW') ? 
-        `${ins.tipoInstrucao} ${ins.registrador1.reg}, ${ins.registrador2} (${ins.registrador3.reg})` : 
+        operacao: ins.tipoInstrucao.includes('SW') || ins.tipoInstrucao.includes('LW') ?
+        `${ins.tipoInstrucao} ${ins.registrador1.reg}, ${ins.registrador2} (${ins.registrador3.reg})` :
         `${ins.tipoInstrucao} ${ins.registrador1.reg}, ${ins.registrador2.reg}, ${ins.registrador3.reg}`,
-        estado: null,
+        estado: '',
         destino: ins.registrador1.reg,
         value: null
-      })
+      }
+
+      if(cont < 5) {
+        inst.estado = 'Issue'
+        cont++
+      }
+
       ins.executado = false
+      dados.push(inst)
     })
 
     this.dataSourceInstrucoes = new MatTableDataSource(dados)

@@ -12,34 +12,34 @@
                 <mat-header-cell *matHeaderCellDef> Entrada </mat-header-cell>
                 <mat-cell *matCellDef="let element"> {{element.entrada}} </mat-cell>
               </ng-container>
-  
+
               <ng-container matColumnDef="ocupado">
                 <mat-header-cell *matHeaderCellDef> Ocupado </mat-header-cell>
                 <mat-cell *matCellDef="let element"> {{element.ocupado ? 'Sim' : 'Não'}} </mat-cell>
               </ng-container>
-  
+
               <ng-container matColumnDef="ope">
                 <mat-header-cell *matHeaderCellDef> Operação </mat-header-cell>
                 <mat-cell *matCellDef="let element"> {{element.operacao}} </mat-cell>
               </ng-container>
-  
+
               <ng-container matColumnDef="estado">
                 <mat-header-cell *matHeaderCellDef> Estado </mat-header-cell>
                 <mat-cell *matCellDef="let element"> {{element.estado}} </mat-cell>
               </ng-container>
-  
+
               <ng-container matColumnDef="destino">
                 <mat-header-cell *matHeaderCellDef> Destino </mat-header-cell>
                 <mat-cell *matCellDef="let element"> {{element.destino}} </mat-cell>
               </ng-container>
-  
+
               <ng-container matColumnDef="valor">
                 <mat-header-cell *matHeaderCellDef> Valor </mat-header-cell>
                 <mat-cell *matCellDef="let element">
                   {{element.valor}}
                 </mat-cell>
               </ng-container>
-  
+
               <mat-header-row *matHeaderRowDef="colunasTabelaInstrucoes"></mat-header-row>
               <mat-row *matRowDef="let row; columns: colunasTabelaInstrucoes;"></mat-row>
             </mat-table>
