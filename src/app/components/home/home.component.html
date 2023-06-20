@@ -1,76 +1,16 @@
 <mat-tab-group>
-    <mat-tab label="Cadastrar MIPS">
-        <app-upload-arquivo (instrucoesCriadas)="pegarInstrucoes($event)" [opcaoRegistradores]="registradores"></app-upload-arquivo>
-    </mat-tab>
-    <mat-tab label="Simular">
-      <div class="row" style="justify-content: space-around; width: 1400px; overflow: hidden; margin-bottom: 50px;">
-        <div class="column">
-          <div class="column" *ngIf="instrucoesCriadas.length > 0">
-            <span class="nomeTabela"> Buffer de ordenação </span>
-            <mat-table [dataSource]="dataSourceInstrucoes" style="width: 500px;">
-              <ng-container matColumnDef="entrada">
-                <mat-header-cell *matHeaderCellDef> Entrada </mat-header-cell>
-                <mat-cell *matCellDef="let element"> {{element.entrada}} </mat-cell>
-              </ng-container>
-
-              <ng-container matColumnDef="ocupado">
-                <mat-header-cell *matHeaderCellDef> Ocupado </mat-header-cell>
-                <mat-cell *matCellDef="let element"> {{element.ocupado ? 'Sim' : 'Não'}} </mat-cell>
-              </ng-container>
-
-              <ng-container matColumnDef="ope">
-                <mat-header-cell *matHeaderCellDef> Operação </mat-header-cell>
-                <mat-cell *matCellDef="let element"> {{element.operacao}} </mat-cell>
-              </ng-container>
-
-              <ng-container matColumnDef="estado">
-                <mat-header-cell *matHeaderCellDef> Estado </mat-header-cell>
-                <mat-cell *matCellDef="let element"> {{element.estado}} </mat-cell>
-              </ng-container>
-
-              <ng-container matColumnDef="destino">
-                <mat-header-cell *matHeaderCellDef> Destino </mat-header-cell>
-                <mat-cell *matCellDef="let element"> {{element.destino}} </mat-cell>
-              </ng-container>
-
-              <ng-container matColumnDef="valor">
-                <mat-header-cell *matHeaderCellDef> Valor </mat-header-cell>
-                <mat-cell *matCellDef="let element">
-                  {{element.valor}}
-                </mat-cell>
-              </ng-container>
-
-              <mat-header-row *matHeaderRowDef="colunasTabelaInstrucoes"></mat-header-row>
-              <mat-row *matRowDef="let row; columns: colunasTabelaInstrucoes;"></mat-row>
-            </mat-table>
-            <mat-paginator #paginator [pageSize]="5">
-            </mat-paginator>
-          </div>
-
-          <div class="column" *ngIf="instrucoesCriadas.length === 0" style="margin-bottom: 30px;">
-            <span class="aviso">
-              Por favor realize o cadastro das instruções MIPS antes de executar
-            </span>
-          </div>
-
-          <div class="column" style="margin-top: 10px; width: 500px;">
-            <span style="margin-left: 30%; font-size: 20px; font-weight: 400;"> Status dos registradores </span>
-            <div style="display: flex; flex-wrap: wrap; flex-direction: row;">
-              <div *ngFor="let reg of registradores">
-                <div class="cardReg" [ngStyle]="reg.status === 1 ? {'background-color': '#1c61ca'} : {'background-color': 'white'}">
-                  <span [matTooltip]="reg.instrucao" [ngStyle]="reg.status === 1 ? {'color': 'white'} : {'color': 'black'}">{{reg.reg}}</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="column" style="margin-bottom: 20px;">
-          <span class="nomeTabela">Estação de reserva</span>
-          <mat-table style="width: 580px;" [dataSource]="dataSourceReserva">
-            <ng-container matColumnDef="instrucao">
-              <mat-header-cell *matHeaderCellDef> Instrução </mat-header-cell>
-              <mat-cell *matCellDef="let element"> {{element.instrucao}} </mat-cell>
+  <mat-tab label="Cadastrar MIPS">
+      <app-upload-arquivo (instrucoesCriadas)="pegarInstrucoes($event)" [opcaoRegistradores]="registradores"></app-upload-arquivo>
+  </mat-tab>
+  <mat-tab label="Simular">
+    <div class="row" style="justify-content: space-around; width: 1400px; overflow: hidden; margin-bottom: 50px;">
+      <div class="column">
+        <div class="column" *ngIf="instrucoesCriadas.length > 0">
+          <span class="nomeTabela"> Buffer de ordenação </span>
+          <mat-table [dataSource]="dataSourceInstrucoes" style="width: 500px;">
+            <ng-container matColumnDef="entrada">
+              <mat-header-cell *matHeaderCellDef> Entrada </mat-header-cell>
+              <mat-cell *matCellDef="let element"> {{element.entrada}} </mat-cell>
             </ng-container>
 
             <ng-container matColumnDef="ocupado">
@@ -78,59 +18,119 @@
               <mat-cell *matCellDef="let element"> {{element.ocupado ? 'Sim' : 'Não'}} </mat-cell>
             </ng-container>
 
-            <ng-container matColumnDef="op">
-              <mat-header-cell *matHeaderCellDef> Op </mat-header-cell>
-              <mat-cell *matCellDef="let element"> {{element.op}} </mat-cell>
+            <ng-container matColumnDef="ope">
+              <mat-header-cell *matHeaderCellDef> Operação </mat-header-cell>
+              <mat-cell *matCellDef="let element"> {{element.operacao}} </mat-cell>
             </ng-container>
 
-            <ng-container matColumnDef="vj">
-              <mat-header-cell *matHeaderCellDef> Vj </mat-header-cell>
-              <mat-cell *matCellDef="let element"> {{element.vj}} </mat-cell>
+            <ng-container matColumnDef="estado">
+              <mat-header-cell *matHeaderCellDef> Estado </mat-header-cell>
+              <mat-cell *matCellDef="let element"> {{element.estado}} </mat-cell>
             </ng-container>
 
-            <ng-container matColumnDef="vk">
-              <mat-header-cell *matHeaderCellDef> Vk </mat-header-cell>
-              <mat-cell *matCellDef="let element"> {{element.vk}} </mat-cell>
+            <ng-container matColumnDef="destino">
+              <mat-header-cell *matHeaderCellDef> Destino </mat-header-cell>
+              <mat-cell *matCellDef="let element"> {{element.destino}} </mat-cell>
             </ng-container>
 
-            <ng-container matColumnDef="qj">
-              <mat-header-cell *matHeaderCellDef> Qj </mat-header-cell>
-              <mat-cell *matCellDef="let element"> {{element.qj}} </mat-cell>
+            <ng-container matColumnDef="valor">
+              <mat-header-cell *matHeaderCellDef> Valor </mat-header-cell>
+              <mat-cell *matCellDef="let element">
+                {{element.valor}}
+              </mat-cell>
             </ng-container>
 
-            <ng-container matColumnDef="qk">
-              <mat-header-cell mat-header-cell *matHeaderCellDef> Qk </mat-header-cell>
-              <mat-cell *matCellDef="let element"> {{element.qk}} </mat-cell>
-            </ng-container>
-
-            <ng-container matColumnDef="a">
-              <mat-header-cell *matHeaderCellDef> A </mat-header-cell>
-              <mat-cell *matCellDef="let element"> {{element.a}} </mat-cell>
-            </ng-container>
-
-            <ng-container matColumnDef="resultado">
-              <mat-header-cell *matHeaderCellDef> Resultado </mat-header-cell>
-              <mat-cell *matCellDef="let element"> {{element.resultado}} </mat-cell>
-            </ng-container>
-
-            <mat-header-row *matHeaderRowDef="colunasTabelaReserva"></mat-header-row>
-            <mat-row *matRowDef="let row; columns: colunasTabelaReserva;"></mat-row>
+            <mat-header-row *matHeaderRowDef="colunasTabelaInstrucoes"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: colunasTabelaInstrucoes;"></mat-row>
           </mat-table>
+          <mat-paginator #paginator [pageSize]="5">
+          </mat-paginator>
         </div>
 
-        <div class="column areaBotao">
-          <button mat-fab class="botaoAcao" (click)="proximoPasso()" [disabled]="instrucoesCriadas.length === 0">
-            <mat-icon>arrow_forward</mat-icon>
-          </button>
+        <div class="column" *ngIf="instrucoesCriadas.length === 0" style="margin-bottom: 30px;">
+          <span class="aviso">
+            Por favor realize o cadastro das instruções MIPS antes de executar
+          </span>
+        </div>
 
-          <button mat-fab class="botaoAcao" (click)="executarTudo()" [disabled]="instrucoesCriadas.length === 0">
-            <mat-icon>skip_next</mat-icon>
-          </button>
-
-          <button mat-fab class="botaoAcao" (click)="resetarSimulador()" [disabled]="instrucoesCriadas.length === 0">
-            <mat-icon>replay</mat-icon>
-          </button>
+        <div class="column" style="margin-top: 10px; width: 500px;">
+          <span style="margin-left: 30%; font-size: 20px; font-weight: 400;"> Status dos registradores </span>
+          <div style="display: flex; flex-wrap: wrap; flex-direction: row;">
+            <div *ngFor="let reg of registradores">
+              <div class="cardReg" [ngStyle]="reg.status === 1 ? {'background-color': '#1c61ca'} : {'background-color': 'white'}">
+                <span [matTooltip]="reg.instrucao" [ngStyle]="reg.status === 1 ? {'color': 'white'} : {'color': 'black'}">{{reg.reg}}</span>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-    </mat-tab>
+
+      <div class="column" style="margin-bottom: 20px;">
+        <span class="nomeTabela">Estação de reserva</span>
+        <mat-table style="width: 580px;" [dataSource]="dataSourceReserva">
+          <ng-container matColumnDef="instrucao">
+            <mat-header-cell *matHeaderCellDef> Instrução </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.instrucao}} </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="ocupado">
+            <mat-header-cell *matHeaderCellDef> Ocupado </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.ocupado ? 'Sim' : 'Não'}} </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="op">
+            <mat-header-cell *matHeaderCellDef> Op </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.op}} </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="vj">
+            <mat-header-cell *matHeaderCellDef> Vj </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.vj}} </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="vk">
+            <mat-header-cell *matHeaderCellDef> Vk </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.vk}} </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="qj">
+            <mat-header-cell *matHeaderCellDef> Qj </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.qj}} </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="qk">
+            <mat-header-cell mat-header-cell *matHeaderCellDef> Qk </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.qk}} </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="a">
+            <mat-header-cell *matHeaderCellDef> A </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.a}} </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="resultado">
+            <mat-header-cell *matHeaderCellDef> Resultado </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.resultado}} </mat-cell>
+          </ng-container>
+
+          <mat-header-row *matHeaderRowDef="colunasTabelaReserva"></mat-header-row>
+          <mat-row *matRowDef="let row; columns: colunasTabelaReserva;"></mat-row>
+        </mat-table>
+      </div>
+
+      <div class="column areaBotao">
+        <button mat-fab class="botaoAcao" (click)="proximoPasso()" [disabled]="instrucoesCriadas.length === 0">
+          <mat-icon>arrow_forward</mat-icon>
+        </button>
+
+        <button mat-fab class="botaoAcao" (click)="executarTudo()" [disabled]="instrucoesCriadas.length === 0">
+          <mat-icon>skip_next</mat-icon>
+        </button>
+
+        <button mat-fab class="botaoAcao" (click)="resetarSimulador()" [disabled]="instrucoesCriadas.length === 0">
+          <mat-icon>replay</mat-icon>
+        </button>
+      </div>
+    </div>
+  </mat-tab>
 </mat-tab-group>

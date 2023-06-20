@@ -203,13 +203,24 @@ export class HomeComponent implements OnInit {
     } else if(instrucao.tipoInstrucao.includes("BEQ") || instrucao.tipoInstrucao.includes("BNE")) {
       /*???*/
     }
-    instrucao.executado = true
-    this.dataSourceInstrucoes.data.filter(ins => ins.estado.includes('Issue'))[0].estado = 'Executado'
+    
+    instrucao.executado = true;
+    if (this.dataSourceInstrucoes.data.filter(ins => ins.estado.includes('Issue'))[0].ocupado = true)
+    {
+    this.dataSourceInstrucoes.data.filter(ins => ins.estado.includes('Issue'))[0].ocupado = 'Sim'
+    this.dataSourceInstrucoes.data.filter(ins => ins.estado.includes('Issue'))[0].estado = 'Executando'
+    }
+    if (this.dataSourceInstrucoes.data.filter(ins => ins.estado.includes('Executando'))[0].ocupado = true){
+    this.dataSourceInstrucoes.data.filter(ins => ins.estado.includes('Executando'))[0].estado = 'Write-Result'
+    this.dataSourceInstrucoes.data.filter(ins => ins.estado.includes('Executando'))[0].ocupado = 'Sim'
+    }
+
   }
 
   delay(milis: number = 100) {
     return new Promise( resolve => setTimeout(resolve, milis) );
   }
+
 
   mudarInfoReserva(index: number, tipoInstrucao: any, vj: any, vk: any, qj: any, qk: any, a: any, resultado: any, registrador1: any) {
     this.estacaoReserva[index].op = tipoInstrucao
@@ -221,7 +232,35 @@ export class HomeComponent implements OnInit {
     this.estacaoReserva[index].a = a
     this.estacaoReserva[index].resultado = resultado
     this.estacaoReserva[index].dataAlteracao = new Date()
-
+    
+    /*
+    // Verificar se é necessário atualizar qj e qk
+    if (qj !== this.estacaoReserva[index].qj) {
+      this.estacaoReserva[index].qj = qj;
+      this.atualizarQjRegistros(qj, registrador1.id);
+    }
+  
+    if (qk !== this.estacaoReserva[index].qk) {
+      this.estacaoReserva[index].qk = qk;
+      this.atualizarQkRegistros(qk, registrador1.id);
+    }
+  }
+  
+  atualizarQjRegistros(qj: any, registradorId: any) {
+    this.registradores.forEach((re) => {
+      if (re.qj === registradorId) {
+        re.qj = qj;
+      }
+    });
+  }
+  
+  atualizarQkRegistros(qk: any, registradorId: any) {
+    this.registradores.forEach((re) => {
+      if (re.qk === registradorId) {
+        re.qk = qk;
+      }
+    });*/
+  
     this.registradores.forEach(re => {
       if(re.id === registrador1.id) {
         re.status = 1
